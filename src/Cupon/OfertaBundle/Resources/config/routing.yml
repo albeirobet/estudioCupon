@@ -1,0 +1,9 @@
+oferta_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: OfertaBundle:Default:index }
+    
+_showcase_greeting:
+    pattern: /
+    defaults: { _controller: OfertaBundle:Sitio:HolaMundo }
+    requirements:
+        _method:  POST

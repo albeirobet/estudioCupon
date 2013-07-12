@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+
+{% set ciudadSeleccionada = app.request.attributes.has('ciudad')
+                            ? app.request.attributes.get('ciudad')
+                            : ciudad_por_defecto
+%}
+
+
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/oferta/css/normalizar.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/oferta/css/comun.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/oferta/css/frontend.css') }}" rel="stylesheet" type="text/css" />
+{% endblock stylesheets %}
+{% block javascripts %}{% endblock javascripts%}
+{% block body %}
+<header>
+       <h1>
+           <a href="{{ path('_portada') }}">CUPON</a>
+       </h1>
+       <nav>
+        <ul>
+            <li><a href="{{ path('_portada') }}">Oferta del día</a></li>
+             <li><a href="{{ path('ciudad_recientes', { 'ciudad': ciudadSeleccionada }) }}">Ofertas Recientes</a></li>
+            <li><a href="#">Mis ofertas</a></li>
+            <li>{{ render (controller("CiudadBundle:Default:listaCiudades" , { 'ciudad': ciudadSeleccionada })) }}</li>
+        </ul>
+       </nav>
+</header>
+<article>
+{% block article %}{% endblock article %}
+</article>
+<aside>
+{% block aside %}{% endblock aside%}
+</aside>
+{% endblock body %}

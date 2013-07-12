@@ -1,0 +1,18 @@
+ciudad_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CiudadBundle:Default:index }
+    
+ciudad_cambiar:
+    pattern: /ciudad/cambiar-a-{ciudad}
+    defaults: { _controller: CiudadBundle:Default:cambiar }
+    
+oferta:
+    pattern: /{ciudad}/ofertas/{slug}
+    defaults: { _controller: OfertaBundle:Default:oferta }
+    
+ciudad_recientes:
+    pattern: /{ciudad}/recientes
+    defaults: { _controller: CiudadBundle:Default:recientes }
+
+
+

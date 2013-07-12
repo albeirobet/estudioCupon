@@ -1,0 +1,36 @@
+
+{% extends '::frontend.html.twig' %}
+{% block title "Showcase Tab | Data Model"  %}
+
+{% block body %}        
+{{ parent() }}
+{% block content %}   
+  Arbol: <br>
+   {{ component_render(tree) }}
+  Your name: <input value="" type="text" id="name" name="name" /> <br>
+  Your apellido: <input value="" type="text" id="apellido" name="apellido" /> <br>
+
+  {% ui_button onclick="HolaMundo()" label="Ajax" id="btnAjax" %}
+  {% ui_button label="Button" id="btnTooltip" %}    
+    {% ui_tooltip for="#btnTooltip" label="Hello World" %}
+  
+  <div id="divUpdate"></div>  
+  <div id="statusLog"></div>
+  
+  {% remote_command proccess="#name, #apellido" 
+                    update="#divUpdate" 
+                    url=path('_showcase_greeting') 
+                    name="HolaMundo" %}
+  
+  {% ajax_status onstart="$('#statusLog').show().html('Starting The Ajax Call');"
+                 onsuccess="$('#statusLog').html('Success');"
+                 oncomplete="$('#statusLog').html('Completed...').delay(3000).fadeOut();"
+                 onerror="$('#statusLog').html('Ups!! Error');"
+                 for="#btnAjax" %}
+{% endblock %}
+
+{% endblock %}
+
+
+
+
